@@ -5,6 +5,7 @@ import torch
 import torchvision
 import clip
 from PIL import Image
+from tqdm import tqdm
 
 from stylegan_models import g_synthesis
 
@@ -110,12 +111,11 @@ def main():
         std=(0.26862954, 0.26130258, 0.27577711),
     )
 
-    # Start of optimization
+    print('Start of optimization')
     with open(args.prompts_path, 'r') as f:
-        for prompt_num, prompt in enumerate(f):
+        for prompt_num, prompt in tqdm(enumerate(f)):
             if prompt[-1] == '\n':
                 prompt = prompt[:-1]
-            counter = 0
             # init_latents = normal_generator.sample(latent_shape).squeeze(-1).to(device)
             latents_init = torch.zeros(latent_shape).squeeze(-1).to(device)
             latents = torch.nn.Parameter(latents_init, requires_grad=True)
@@ -124,7 +124,7 @@ def main():
                 lr=lr,
                 betas=(0.9, 0.999),
             )
-            while True:
+            for i in range(args.num_iters):
                 dlatents = latents.repeat(1, 18, 1)
                 img = g_synthesis(dlatents)
 
@@ -137,10 +137,8 @@ def main():
                 loss.backward()
                 optimizer.step()
 
-                if counter == args.num_iters:
-                    img = tensor_to_pil_img(img)
-                    img.save(os.path.join(output_dir, f'{prompt_num}_{prompt}.png'))
-                counter += 1
+            img = tensor_to_pil_img(img)
+            img.save(os.path.join(output_dir, f'{prompt_num}_{prompt}.png'))
 
 
 if __name__ == '__main__':
