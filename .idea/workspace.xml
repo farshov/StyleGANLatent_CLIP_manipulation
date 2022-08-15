@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dbf747ce-f780-4e94-aec7-65cb98e4d84d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/clip_generate.py" beforeDir="false" afterPath="$PROJECT_DIR$/clip_generate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stylegan_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/stylegan_models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,6 +11,12 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/stylegan_models.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/clip_generate_stylegan2.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/clip_generate.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/utils.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="2DCoXhayDwmRE4BW3AcppL9W3c4" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
