@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dbf747ce-f780-4e94-aec7-65cb98e4d84d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/clip_generate.py" beforeDir="false" afterPath="$PROJECT_DIR$/clip_generate.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,7 +40,9 @@
       <updated>1660212469287</updated>
       <workItem from="1660212491953" duration="2412000" />
       <workItem from="1660226689207" duration="2318000" />
-      <workItem from="1660234424829" duration="1786000" />
+      <workItem from="1660234424829" duration="2388000" />
+      <workItem from="1660290750957" duration="602000" />
+      <workItem from="1660549482192" duration="1477000" />
     </task>
     <servers />
   </component>

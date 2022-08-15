@@ -113,7 +113,7 @@ def main():
 
     print('Start of optimization')
     with open(args.prompts_path, 'r') as f:
-        for prompt_num, prompt in tqdm(enumerate(f)):
+        for prompt_num, prompt in enumerate(f):
             if prompt[-1] == '\n':
                 prompt = prompt[:-1]
             # init_latents = normal_generator.sample(latent_shape).squeeze(-1).to(device)
@@ -124,6 +124,7 @@ def main():
                 lr=lr,
                 betas=(0.9, 0.999),
             )
+            print(prompt)
             for i in range(args.num_iters):
                 dlatents = latents.repeat(1, 18, 1)
                 img = g_synthesis(dlatents)
@@ -136,6 +137,8 @@ def main():
                 optimizer.zero_grad()
                 loss.backward()
                 optimizer.step()
+
+                print(loss.detach().cpu())
 
             img = tensor_to_pil_img(img)
             img.save(os.path.join(output_dir, f'{prompt_num}_{prompt}.png'))
