@@ -8,6 +8,7 @@ from PIL import Image
 from tqdm import tqdm
 
 from stylegan_models import g_synthesis
+from style
 
 torch.manual_seed(20)
 
@@ -112,10 +113,15 @@ def main():
     )
 
     print('Start of optimization')
+    prompts_batch, prompts_batch_idxs = [], []
     with open(args.prompts_path, 'r') as f:
         for prompt_num, prompt in enumerate(f):
             if prompt[-1] == '\n':
                 prompt = prompt[:-1]
+            prompts_batch.append(prompt)
+            prompts_batch_idxs.append(prompt_num)
+            if len(prompts_batch) < batch_size:
+                continue
             # init_latents = normal_generator.sample(latent_shape).squeeze(-1).to(device)
             latents_init = torch.zeros(latent_shape).squeeze(-1).to(device)
             latents = torch.nn.Parameter(latents_init, requires_grad=True)
@@ -132,6 +138,7 @@ def main():
                 # NOTE: clip normalization did not seem to have much effect
                 # img = clip_normalize(img)
 
+                # TODO: Поправить аргументы
                 loss = compute_clip_loss(img, prompt)
 
                 optimizer.zero_grad()
@@ -140,8 +147,12 @@ def main():
 
                 print(loss.detach().cpu())
 
+            # TODO: Добавить сохранение батча
             img = tensor_to_pil_img(img)
             img.save(os.path.join(output_dir, f'{prompt_num}_{prompt}.png'))
+
+            if len(prompts_batch) == batch_size:
+                prompts_batch, prompts_batch_idxs = [], []
 
 
 if __name__ == '__main__':
